@@ -1,0 +1,82 @@
+﻿<Window x:Class="SStopwatch.Views.StopwatchView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SStopwatch"
+        mc:Ignorable="d"
+        Title="Stopwatch"
+		Height="800"
+		MinHeight="300"
+		Width="800"
+		MinWidth="300"
+		WindowStartupLocation="CenterScreen" >
+
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Grid.Row="1"
+					Grid.Column="1"
+					MaxWidth="800"
+					MinWidth="200"
+					Margin="20 10">
+
+			<DockPanel>
+			<!-- <Button x:Name="OptionsButton"
+						Content="Opt."
+						DockPanel.Dock="Right"/> -->
+
+				<ToggleButton x:Name="PinButton"
+						DockPanel.Dock="Right"
+						Click="PinButton_Click"
+						Style="{StaticResource PinButtonStyle}">
+					<Image Source="/Icons/pin.png"
+						   Height="35"/>
+				</ToggleButton>
+
+				<Rectangle/>
+			</DockPanel>
+
+			<Viewbox MaxWidth="800"
+					 MaxHeight="400">
+
+				<!-- <TextBlock x:Name="ClockTextBlock"
+						   Text="{Binding Time}"/> -->
+
+				<TextBlock x:Name="ClockTextBlock"
+						   Text="{Binding Time,
+								StringFormat=\{0:hh\\:mm\\:ss\}}"/>
+			</Viewbox>
+
+			<Viewbox MaxWidth="400"
+					 Margin="50 0 50 50">
+
+				<StackPanel Orientation="Horizontal"
+							HorizontalAlignment="Center" >
+
+					<Button x:Name="Start"
+							Content="{StaticResource PlayButton}"
+							Command="{Binding Start}"
+							Style="{StaticResource MainButtonStyle}"/>
+
+					<Button x:Name="Pause"
+							Content="{StaticResource PauseButton}"
+							Command="{Binding Pause}"
+							Style="{StaticResource MainButtonStyle}"/>
+
+					<Button x:Name="Stop"
+							Content="{StaticResource StopButton}"
+							Command="{Binding Stop}"
+							Style="{StaticResource MainButtonStyle}"/>
+
+				</StackPanel>
+			</Viewbox>
+
+		</StackPanel>
+
+	</Grid>
+</Window>
