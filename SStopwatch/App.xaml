@@ -8,6 +8,8 @@
 
 				<ResourceDictionary Source="Resourses/Buttons.xaml"/>
 
+				<ResourceDictionary Source="Resourses/PinButton.xaml"/>
+
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

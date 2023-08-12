@@ -3,12 +3,70 @@
 
 	<BooleanToVisibilityConverter x:Key="BTVC"/>
 
+	<Color x:Key="MouseOverCol">#33a2a2</Color>
+
 	<ControlTemplate TargetType="Button"
 					 x:Key="MainButton">
 		<Grid>
-			<Ellipse Width="50" Height="50" Fill="Transparent"/>
 			<ContentPresenter Content="{TemplateBinding Content}"
 							  RecognizesAccessKey="True"/>
+
+			<Ellipse x:Name="ButtonEllipse"
+					 Width="50"
+					 Height="50"
+					 Fill="Transparent"
+					 Stroke="#0033a2a2"
+					 StrokeThickness ="3" >
+
+				<Ellipse.Effect>
+					<BlurEffect Radius="3"/>
+				</Ellipse.Effect>
+
+			</Ellipse>
+
+			<VisualStateManager.VisualStateGroups>
+
+				<VisualStateGroup x:Name="CommonStates">
+
+					<VisualState x:Name="Normal"/>
+
+					<VisualState x:Name="MouseOver">
+						<Storyboard>
+							<ColorAnimation Storyboard.TargetName="ButtonEllipse"
+											Storyboard.TargetProperty="Stroke.Color"
+											To="{StaticResource MouseOverCol}"
+											Duration="0" />
+						</Storyboard>
+					</VisualState>
+
+					<VisualStateGroup.Transitions>
+						<VisualTransition From="Normal"
+										  To="MouseOver" >
+							<Storyboard>
+								<ColorAnimation Storyboard.TargetName="ButtonEllipse"
+												Storyboard.TargetProperty="Stroke.Color"
+												To="{StaticResource MouseOverCol}"
+												Duration="0:0:0.2">
+								</ColorAnimation>
+
+							</Storyboard>
+
+						</VisualTransition>
+
+						<VisualTransition From="MouseOver"
+										  To="Normal" >
+							<Storyboard>
+								<ColorAnimation Storyboard.TargetName="ButtonEllipse"
+												Storyboard.TargetProperty="Stroke.Color"
+												To="#0033a2a2"
+												Duration="0:0:0.2"/>
+							</Storyboard>
+
+						</VisualTransition>
+					</VisualStateGroup.Transitions>
+				</VisualStateGroup>
+
+			</VisualStateManager.VisualStateGroups>
 		</Grid>
 	</ControlTemplate>
 
@@ -27,7 +85,7 @@
 	</Style>
 
 	<Path x:Key="PlayButton"
-			  Fill="DarkCyan">
+		  Fill="DarkCyan">
 		<Path.Data>
 
 			<CombinedGeometry GeometryCombineMode="Exclude" >
@@ -46,7 +104,7 @@
 	</Path>
 
 	<Path x:Key="PauseButton"
-			  Fill="DarkCyan">
+		  Fill="DarkCyan">
 		<Path.Data>
 
 			<CombinedGeometry GeometryCombineMode="Exclude" >
@@ -66,7 +124,7 @@
 	</Path>
 
 	<Path x:Key="StopButton"
-			  Fill="DarkCyan">
+		  Fill="DarkCyan">
 		<Path.Data>
 
 			<CombinedGeometry GeometryCombineMode="Exclude" >
@@ -85,22 +143,5 @@
 
 		</Path.Data>
 	</Path>
-
-	
-	<ControlTemplate TargetType="ToggleButton"
-					 x:Key="PinButton">
-		<Grid>
-			<Ellipse Width="45" Height="45" Fill="Turquoise"/>
-			<ContentPresenter Content="{TemplateBinding Content}"
-							  RecognizesAccessKey="True"/>
-		</Grid>
-	</ControlTemplate>
-
-	<Style TargetType="ToggleButton"
-		   x:Key="PinButtonStyle">
-
-		<Setter Property="Template"
-				Value="{StaticResource PinButton}"/>
-	</Style>
 
 </ResourceDictionary>
