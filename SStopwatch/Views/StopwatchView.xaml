@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="Stopwatch"
 		Height="800"
-		MinHeight="300"
+		MinHeight="240"
 		Width="800"
-		MinWidth="300"
+		MinWidth="250"
 		WindowStartupLocation="CenterScreen" >
 
     <Grid>
@@ -22,7 +22,7 @@
 		<StackPanel Grid.Row="1"
 					Grid.Column="1"
 					MaxWidth="800"
-					MinWidth="200"
+					MinWidth="150"
 					Margin="20 10">
 
 			<DockPanel>
@@ -35,7 +35,7 @@
 						Click="PinButton_Click"
 						Style="{StaticResource PinButtonStyle}">
 					<Image Source="/Icons/pin.png"
-						   Height="35"/>
+						   Height="30"/>
 				</ToggleButton>
 
 				<Rectangle/>

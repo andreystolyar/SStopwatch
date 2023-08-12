@@ -19,6 +19,8 @@ internal class StopwatchModel : IStopwatchModel
     //token source to stop the timer
     CancellationTokenSource? _cts;
 
+    public event EventHandler? TimeChanged = delegate { };
+
     public bool IsRunning { get; set; }
 
     public TimeSpan Time
@@ -27,11 +29,9 @@ internal class StopwatchModel : IStopwatchModel
         private set
         {
             _time = _savedTime + value;
-            TimeChanged?.Invoke(this, EventArgs.Empty);
+            TimeChanged!(this, EventArgs.Empty);
         }
     }
-
-    public event EventHandler? TimeChanged;
 
     public async void StartAsync()
     {
