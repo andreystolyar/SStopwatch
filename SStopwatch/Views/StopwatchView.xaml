@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:SStopwatch"
         mc:Ignorable="d"
         Title="Stopwatch"
@@ -44,8 +45,8 @@
 			<Viewbox MaxWidth="800"
 					 MaxHeight="400">
 
-				<!-- <TextBlock x:Name="ClockTextBlock"
-						   Text="{Binding Time}"/> -->
+				<!--<TextBlock x:Name="ClockTextBlock"
+						   Text="{Binding Time}"/>-->
 
 				<TextBlock x:Name="ClockTextBlock"
 						   Text="{Binding Time,
@@ -58,19 +59,24 @@
 				<StackPanel Orientation="Horizontal"
 							HorizontalAlignment="Center" >
 
-					<Button x:Name="Start"
-							Content="{StaticResource PlayButton}"
-							Command="{Binding Start}"
-							Style="{StaticResource MainButtonStyle}"/>
+					<ToggleButton x:Name="StartPauseButton"
+								  Style="{StaticResource PlayPauseButtonStyle}">
 
-					<Button x:Name="Pause"
-							Content="{StaticResource PauseButton}"
-							Command="{Binding Pause}"
-							Style="{StaticResource MainButtonStyle}"/>
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Checked">
+								<i:InvokeCommandAction Command="{Binding Start}"/>
+							</i:EventTrigger>
+							<i:EventTrigger EventName="Unchecked">
+								<i:InvokeCommandAction Command="{Binding Pause}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+
+					</ToggleButton>
 
 					<Button x:Name="Stop"
 							Content="{StaticResource StopButton}"
 							Command="{Binding Stop}"
+							Click="StopButton_Click"
 							Style="{StaticResource MainButtonStyle}"/>
 
 				</StackPanel>

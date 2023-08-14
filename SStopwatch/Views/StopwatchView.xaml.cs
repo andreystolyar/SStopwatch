@@ -13,4 +13,10 @@ public partial class StopwatchView : Window
     {
         Topmost = !Topmost;
     }
+
+    private void StopButton_Click(object sender, RoutedEventArgs e)
+    {
+        StartPauseButton.IsChecked = false;
+    }
+
 }
