@@ -14,9 +14,7 @@ public partial class Application : System.Windows.Application
 
         base.OnStartup(e);
 
-        IStopwatchModel model = new StopwatchModel();
-
-        StopwatchViewModel viewmodel = new StopwatchViewModel(model);
+        StopwatchViewModel viewmodel = new(new StopwatchModel());
 
         MainWindow = new StopwatchView
         {

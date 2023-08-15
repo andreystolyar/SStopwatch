@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SStopwatch.Models;
 
-internal class StopwatchModel : IStopwatchModel
+internal class StopwatchModel
 {
     //starting value for the stopwatch
     long _startPoint;

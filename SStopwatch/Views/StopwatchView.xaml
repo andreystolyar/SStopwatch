@@ -74,10 +74,9 @@
 					</ToggleButton>
 
 					<Button x:Name="Stop"
-							Content="{StaticResource StopButton}"
 							Command="{Binding Stop}"
 							Click="StopButton_Click"
-							Style="{StaticResource MainButtonStyle}"/>
+							Style="{StaticResource StopButtonStyle}"/>
 
 				</StackPanel>
 			</Viewbox>

@@ -8,21 +8,21 @@ namespace SStopwatch.ViewModels;
 
 internal class StopwatchViewModel : INotifyPropertyChanged
 {
-    IStopwatchModel model;
+    StopwatchModel model;
 
     public ICommand Start { get; }
     public ICommand Pause { get; }
     public ICommand Stop { get; }
 
-    public StopwatchViewModel(IStopwatchModel model)
+    public StopwatchViewModel(StopwatchModel model)
     {
         this.model = model;
 
         model.TimeChanged +=
             delegate { PropertyChanged!(this, new PropertyChangedEventArgs(nameof(Time))); };
 
-        Start = new CustomCommand(_ => model.StartAsync(), _ => !model.IsRunning);
-        Pause = new CustomCommand(_ => model.Pause(), _ => model.IsRunning);
+        Start = new CustomCommand(_ => model.StartAsync());
+        Pause = new CustomCommand(_ => model.Pause());
         Stop = new CustomCommand(_ => model.Stop());
     }
 
