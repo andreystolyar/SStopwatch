@@ -5,14 +5,15 @@
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Icons\pin.png" />
+    <Resource Include="Assets\icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Icons\pin.png" />
+    <Resource Include="Assets\pin.png" />
   </ItemGroup>
 
   <ItemGroup>

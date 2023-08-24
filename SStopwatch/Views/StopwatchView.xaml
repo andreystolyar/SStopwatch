@@ -35,7 +35,7 @@
 						DockPanel.Dock="Right"
 						Click="PinButton_Click"
 						Style="{StaticResource PinButtonStyle}">
-					<Image Source="/Icons/pin.png"
+					<Image Source="/Assets/pin.png"
 						   Height="30"/>
 				</ToggleButton>
 
