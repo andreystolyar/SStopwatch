@@ -45,12 +45,11 @@ internal class StopwatchModel
 
     public void Pause()
     {
-        if (IsRunning)
-        {
-            _cts?.Cancel();
-            _savedTime = Time;
-            IsRunning = false;
-        }
+        if (!IsRunning) return;
+
+        _cts?.Cancel();
+        _savedTime = Time;
+        IsRunning = false;
     }
 
     public void Stop()
@@ -58,6 +57,7 @@ internal class StopwatchModel
         if (Time == default) return;
 
         Time = _savedTime = default;
+
         Pause();
     }
 
