@@ -16,7 +16,8 @@
 						<Path x:Name="StopButtonPath"
 						      HorizontalAlignment="Center"
 						      VerticalAlignment="Center"
-						      Fill="DarkCyan">
+						      Fill="{Binding StopButtonBrush,
+						                     ElementName=StopButtonUserControl}">
 							<Path.Data>
 								<CombinedGeometry GeometryCombineMode="Exclude">
 
@@ -36,11 +37,12 @@
 							</Path.Data>
 						</Path>
 
-						<Ellipse x:Name="ButtonEllipse"
+						<Ellipse x:Name="ButtonHalo"
 						         Width="50"
 						         Height="50"
-						         Fill="{StaticResource TransparentCyanBrush}"
-						         Stroke="{StaticResource TransparentCyanBrush}"
+						         Fill="{Binding StopButtonTransparentBrush,
+						                        ElementName=StopButtonUserControl}"
+						         Stroke="{StaticResource TransparentBrush}"
 						         StrokeThickness="3">
 							<Ellipse.Effect>
 								<BlurEffect Radius="3" />
@@ -53,9 +55,9 @@
 								<VisualState x:Name="Normal" />
 								<VisualState x:Name="MouseOver">
 									<Storyboard>
-										<ColorAnimation Storyboard.TargetName="ButtonEllipse"
+										<ColorAnimation Storyboard.TargetName="ButtonHalo"
 										                Storyboard.TargetProperty="Stroke.Color"
-										                To="{StaticResource MouseOverCol}" />
+										                To="{StaticResource HaloColor}" />
 									</Storyboard>
 								</VisualState>
 
@@ -63,9 +65,9 @@
 									<VisualTransition From="Normal"
 									                  To="MouseOver">
 										<Storyboard>
-											<ColorAnimation Storyboard.TargetName="ButtonEllipse"
+											<ColorAnimation Storyboard.TargetName="ButtonHalo"
 											                Storyboard.TargetProperty="Stroke.Color"
-											                To="{StaticResource MouseOverCol}"
+											                To="{StaticResource HaloColor}"
 											                Duration="0:0:0.2" />
 										</Storyboard>
 									</VisualTransition>
@@ -73,9 +75,9 @@
 									<VisualTransition From="MouseOver"
 									                  To="Normal">
 										<Storyboard>
-											<ColorAnimation Storyboard.TargetName="ButtonEllipse"
+											<ColorAnimation Storyboard.TargetName="ButtonHalo"
 											                Storyboard.TargetProperty="Stroke.Color"
-											                To="{StaticResource TransparentCyanCol}"
+											                To="{StaticResource TransparentColor}"
 											                Duration="0:0:0.2" />
 										</Storyboard>
 									</VisualTransition>
@@ -89,7 +91,8 @@
 						         Value="true">
 							<Setter TargetName="StopButtonPath"
 							        Property="Fill"
-							        Value="{StaticResource ButtonPressedBrush}" />
+							        Value="{Binding StopButtonPressedBrush,
+							                        ElementName=StopButtonUserControl}" />
 						</Trigger>
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
@@ -98,9 +101,10 @@
 
 		<!--  Progress Circle  -->
 		<Path x:Name="ProgressCircleRoot"
-		      Stroke="{Binding ProgressCircleColor,
+		      Stroke="{Binding ProgressCircleBrush,
 		                       ElementName=StopButtonUserControl}"
-		      StrokeThickness="{Binding ProgressCircleLineThickness}">
+		      StrokeThickness="{Binding ProgressCircleLineThickness,
+		                                ElementName=StopButtonUserControl}">
 			<Path.Data>
 				<PathGeometry>
 					<PathGeometry.Figures>

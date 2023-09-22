@@ -10,7 +10,7 @@
         Width="800"
         Height="800"
         MinWidth="250"
-        MinHeight="240"
+        MinHeight="260"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
 
@@ -32,12 +32,13 @@
 						Content="Opt."
 						DockPanel.Dock="Right"/>-->
 
+				<!-- Testing sliders:
 				<Slider x:Name="slider"
 				        Width="100"
 				        Height="20"
 				        Margin="20"
-				        Maximum="99.99"
-				        Value="90" />
+				        Maximum="99.999"
+				        Value="75" />
 
 				<StackPanel Orientation="Vertical">
 					<Label Content="Percentage:" />
@@ -52,7 +53,7 @@
 				        Height="20"
 				        Margin="20"
 				        Maximum="10"
-				        Value="9" />
+				        Value="2" />
 
 				<StackPanel Orientation="Vertical">
 					<Label Content="Thickness:" />
@@ -68,7 +69,7 @@
 				        Margin="20"
 				        Maximum="100"
 				        Minimum="10"
-				        Value="50" />
+				        Value="60" />
 
 				<StackPanel Orientation="Vertical">
 					<Label Content="Size:" />
@@ -77,6 +78,7 @@
 					                          ElementName=size_slider,
 					                          StringFormat=N2}" />
 				</StackPanel>
+				-->
 
 				<ToggleButton x:Name="PinButton"
 				              Click="PinButton_Click"
@@ -96,6 +98,7 @@
 						   Text="{Binding Time}"/>-->
 
 				<TextBlock x:Name="ClockTextBlock"
+				           d:Text="01:23:45"
 				           Text="{Binding Time,
 				                          StringFormat=\{0:hh\\:mm\\:ss\}}" />
 			</Viewbox>
@@ -104,7 +107,7 @@
 			         Margin="50,0,50,50">
 
 				<StackPanel HorizontalAlignment="Center"
-				            Background="Beige"
+				            Background="AliceBlue"
 				            Orientation="Horizontal">
 
 					<ToggleButton x:Name="StartPauseButton"
@@ -121,30 +124,7 @@
 
 					</ToggleButton>
 
-					<!--
-					<Button x:Name="Stop"
-					        Click="StopButton_Click"
-					        Command="{Binding Stop}"
-					        Style="{StaticResource StopButtonStyle}" />
-
-					-->
-
-					<controls:StopButton ProgressCircleDiameter="{Binding Value,
-					                                                      ElementName=size_slider}"
-					                     ProgressCircleLineThickness="{Binding Value,
-					                                                           ElementName=thick_slider}"
-					                     ProgressCirclePercentage="{Binding Value,
-					                                                        ElementName=slider}"
-					                     StopCommand="{Binding Stop}" />
-
-					<!--<local:ProgressCircle LineThickness="{Binding Value,
-					                                              ElementName=thick_slider}"
-					                      Percentage="{Binding Value,
-					                                           ElementName=slider}"
-					                      Size="{Binding Value,
-					                                     ElementName=size_slider}"
-					                      Color="DarkBlue" />-->
-
+					<controls:StopButton StopCommand="{Binding Stop}" />
 				</StackPanel>
 			</Viewbox>
 

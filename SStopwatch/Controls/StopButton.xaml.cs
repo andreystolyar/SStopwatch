@@ -37,6 +37,15 @@ public partial class StopButton : UserControl
         Btn.AddHandler(MouseLeftButtonUpEvent,
             new MouseButtonEventHandler(ButtonUp), true);
 
+        /*
+        The inner button width is fixed and equal to 50. But the progress
+        circle width is customizable. In order the image not to adjust the
+        distance between elements when the progress bar appears it is necessary
+        to calculate the correct margin beforehand.
+        */
+        if (ProgressCircleDiameter > 50)
+            Btn.Margin = new Thickness((ProgressCircleDiameter - 50) / 2);
+
         progressAnimation = new DoubleAnimation()
         {
             From = 0d,
@@ -74,6 +83,51 @@ public partial class StopButton : UserControl
 
     #region Dependency Properties
 
+    #region StopButtonBrush
+    public Brush StopButtonBrush
+    {
+        get { return (Brush)GetValue(StopButtonBrushProperty); }
+        set { SetValue(StopButtonBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty StopButtonBrushProperty =
+        DependencyProperty.Register(
+            "StopButtonBrush",
+            typeof(Brush),
+            typeof(StopButton),
+            new PropertyMetadata(new SolidColorBrush(Colors.Gray)));
+    #endregion
+
+    #region StopButtonPressedBrush
+    public Brush StopButtonPressedBrush
+    {
+        get { return (Brush)GetValue(StopButtonPressedBrushProperty); }
+        set { SetValue(StopButtonPressedBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty StopButtonPressedBrushProperty =
+        DependencyProperty.Register(
+            "StopButtonPressedBrush",
+            typeof(Brush),
+            typeof(StopButton),
+            new PropertyMetadata(new SolidColorBrush(Colors.LightGray)));
+    #endregion
+
+    #region StopButtonTransparentBrush
+    public Brush StopButtonTransparentBrush
+    {
+        get { return (Brush)GetValue(StopButtonTransparentBrushProperty); }
+        set { SetValue(StopButtonTransparentBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty StopButtonTransparentBrushProperty =
+        DependencyProperty.Register(
+            "StopButtonTransparentBrush",
+            typeof(Brush),
+            typeof(StopButton),
+            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
+    #endregion
+
     #region ProgressCircleDiameter
     public double ProgressCircleDiameter
     {
@@ -86,24 +140,24 @@ public partial class StopButton : UserControl
             "ProgressCircleDiameter",
             typeof(double),
             typeof(StopButton),
-            new PropertyMetadata(50d, OnCircleDiameterChanged));
+            new PropertyMetadata(60d, OnCircleDiameterChanged));
     #endregion
 
-    #region ProgressCircleColor
+    #region ProgressCircleBrush
 
-    public Brush ProgressCircleColor
+    public Brush ProgressCircleBrush
     {
-        get { return (Brush)GetValue(ProgressCircleColorProperty); }
-        set { SetValue(ProgressCircleColorProperty, value); }
+        get { return (Brush)GetValue(ProgressCircleBrushProperty); }
+        set { SetValue(ProgressCircleBrushProperty, value); }
     }
 
-    public static readonly DependencyProperty ProgressCircleColorProperty =
+    public static readonly DependencyProperty ProgressCircleBrushProperty =
         DependencyProperty.Register(
-            "ProgressCircleColor",
+            "ProgressCircleBrush",
             typeof(Brush),
             typeof(StopButton),
             new PropertyMetadata(new SolidColorBrush(Colors.Red),
-                new PropertyChangedCallback(OnProgressCircleColorChanged)));
+                new PropertyChangedCallback(OnProgressCircleBrushChanged)));
     #endregion
 
     #region ProgressCircleLineThickness
@@ -118,7 +172,7 @@ public partial class StopButton : UserControl
             "ProgressCircleLineThickness",
             typeof(int),
             typeof(StopButton),
-            new PropertyMetadata(4,
+            new PropertyMetadata(2,
                 new PropertyChangedCallback(OnThicknessChanged)));
     #endregion
 
@@ -134,7 +188,7 @@ public partial class StopButton : UserControl
             "ProgressCirclePercentage",
             typeof(double),
             typeof(StopButton),
-            new PropertyMetadata(99d, OnProgressCirclePercentageChange));
+            new PropertyMetadata(0d, OnProgressCirclePercentageChange));
     #endregion
 
     #region StopCommand
@@ -161,7 +215,7 @@ public partial class StopButton : UserControl
         circle.RenderArc();
     }
 
-    static void OnProgressCircleColorChanged(DependencyObject d,
+    static void OnProgressCircleBrushChanged(DependencyObject d,
         DependencyPropertyChangedEventArgs e)
     {
         var circle = d as StopButton;
