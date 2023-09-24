@@ -50,12 +50,12 @@ public partial class StopButton : UserControl
         {
             From = 0d,
             To = 100d,
-            Duration = TimeSpan.FromMilliseconds(1000d)
+            Duration = TimeSpan.FromMilliseconds(PressingTime)
         };
 
         _timer = new()
         {
-            Interval = 1000,
+            Interval = PressingTime,
             AutoReset = true
         };
         _timer.Elapsed += _timer_Elapsed;
@@ -204,6 +204,21 @@ public partial class StopButton : UserControl
             typeof(ICommand),
             typeof(StopButton),
             new PropertyMetadata(null));
+    #endregion
+
+    #region PressingTime
+    public double PressingTime
+    {
+        get { return (double)GetValue(PressingTimeProperty); }
+        set { SetValue(PressingTimeProperty, value); }
+    }
+
+    public static readonly DependencyProperty PressingTimeProperty =
+        DependencyProperty.Register(
+            "PressingTime",
+            typeof(double),
+            typeof(StopButton),
+            new PropertyMetadata(1000d));
     #endregion
 
     #endregion

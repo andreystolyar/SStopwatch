@@ -6,11 +6,13 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:SStopwatch"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:SStopwatch.ViewModels"
         Title="Stopwatch"
         Width="800"
         Height="800"
         MinWidth="250"
         MinHeight="260"
+        d:DataContext="{d:DesignInstance Type=viewmodels:StopwatchViewModel}"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
 
@@ -107,8 +109,13 @@
 			         Margin="50,0,50,50">
 
 				<StackPanel HorizontalAlignment="Center"
-				            Background="AliceBlue"
 				            Orientation="Horizontal">
+					<StackPanel.Background>
+						<LinearGradientBrush StartPoint="0.25, 0" EndPoint="1, 0">
+							<GradientStop Offset="0" Color="AliceBlue" />
+							<GradientStop Offset="1" Color="Bisque" />
+						</LinearGradientBrush>
+					</StackPanel.Background>
 
 					<ToggleButton x:Name="StartPauseButton"
 					              Style="{StaticResource PlayPauseButtonStyle}">
@@ -123,6 +130,8 @@
 						</i:Interaction.Triggers>
 
 					</ToggleButton>
+
+					<controls:PlayPauseButton Margin="5" />
 
 					<controls:StopButton StopCommand="{Binding Stop}" />
 				</StackPanel>
