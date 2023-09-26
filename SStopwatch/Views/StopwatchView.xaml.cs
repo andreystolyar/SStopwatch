@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SStopwatch.Controls;
+using System.Windows;
 
 namespace SStopwatch.Views;
 
@@ -14,9 +15,9 @@ public partial class StopwatchView : Window
         Topmost = !Topmost;
     }
 
-    private void StopButton_Click(object sender, RoutedEventArgs e)
+    void StopButton_StopEvent(object sender, System.EventArgs e)
     {
-        StartPauseButton.IsChecked = false;
+        if (PlayPause.IsPlaying)
+            PlayPause.IsPlaying = false;
     }
-
 }

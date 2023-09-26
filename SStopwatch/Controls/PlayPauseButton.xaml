@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SStopwatch.Controls"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             x:Name="PlayPauseButtonUserControl"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
@@ -11,12 +12,14 @@
 		<CombinedGeometry x:Key="PlayButtonGeometry"
 		                  GeometryCombineMode="Exclude">
 
+			<!--  Outer circle  -->
 			<CombinedGeometry.Geometry1>
 				<EllipseGeometry Center="25,25"
 				                 RadiusX="25"
 				                 RadiusY="25" />
 			</CombinedGeometry.Geometry1>
 
+			<!--  Play (triangle)  -->
 			<CombinedGeometry.Geometry2>
 				<PathGeometry Figures="M 15,10 L 15,40 L 40,25 Z" />
 			</CombinedGeometry.Geometry2>
@@ -26,12 +29,14 @@
 		<CombinedGeometry x:Key="PauseButtonGeometry"
 		                  GeometryCombineMode="Exclude">
 
+			<!--  Outer circle  -->
 			<CombinedGeometry.Geometry1>
 				<EllipseGeometry Center="25,25"
 				                 RadiusX="25"
 				                 RadiusY="25" />
 			</CombinedGeometry.Geometry1>
 
+			<!--  Pause (two rectangles)  -->
 			<CombinedGeometry.Geometry2>
 				<PathGeometry Figures="M 15,15 L 15,35 L 22.5, 35 L 22.5, 15 Z M 27.5, 15 L 27.5, 35 L 35, 35 L 35, 15 Z" />
 			</CombinedGeometry.Geometry2>
@@ -39,9 +44,9 @@
 		</CombinedGeometry>
 	</UserControl.Resources>
 	<Border>
-		<ToggleButton>
-			<ToggleButton.Template>
-				<ControlTemplate TargetType="ToggleButton">
+		<Button Click="Button_Click">
+			<Button.Template>
+				<ControlTemplate TargetType="Button">
 					<Grid>
 						<Path x:Name="PlayPauseButtonPath"
 						      HorizontalAlignment="Center"
@@ -106,14 +111,6 @@
 
 					<ControlTemplate.Triggers>
 
-						<Trigger Property="ToggleButton.IsChecked"
-						         Value="True">
-
-							<Setter TargetName="PlayPauseButtonPath"
-							        Property="Data"
-							        Value="{StaticResource PauseButtonGeometry}" />
-						</Trigger>
-
 						<Trigger Property="IsPressed"
 						         Value="true">
 							<Setter TargetName="PlayPauseButtonPath"
@@ -121,9 +118,20 @@
 							        Value="{StaticResource ButtonPressedBrush}" />
 						</Trigger>
 
+						<DataTrigger Binding="{Binding IsPlaying,
+						                               ElementName=PlayPauseButtonUserControl}"
+						             Value="true">
+							<DataTrigger.Setters>
+								<Setter TargetName="PlayPauseButtonPath"
+								        Property="Data"
+								        Value="{StaticResource PauseButtonGeometry}" />
+							</DataTrigger.Setters>
+						</DataTrigger>
+
 					</ControlTemplate.Triggers>
 				</ControlTemplate>
-			</ToggleButton.Template>
-		</ToggleButton>
+			</Button.Template>
+		</Button>
+
 	</Border>
 </UserControl>

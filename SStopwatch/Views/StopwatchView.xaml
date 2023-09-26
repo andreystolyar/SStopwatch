@@ -96,9 +96,6 @@
 			<Viewbox MaxWidth="800"
 			         MaxHeight="400">
 
-				<!--<TextBlock x:Name="ClockTextBlock"
-						   Text="{Binding Time}"/>-->
-
 				<TextBlock x:Name="ClockTextBlock"
 				           d:Text="01:23:45"
 				           Text="{Binding Time,
@@ -117,23 +114,14 @@
 						</LinearGradientBrush>
 					</StackPanel.Background>
 
-					<ToggleButton x:Name="StartPauseButton"
-					              Style="{StaticResource PlayPauseButtonStyle}">
+					<controls:PlayPauseButton x:Name="PlayPause"
+					                          Margin="5"
+					                          PauseCommand="{Binding Pause}"
+					                          PlayCommand="{Binding Start}" />
 
-						<i:Interaction.Triggers>
-							<i:EventTrigger EventName="Checked">
-								<i:InvokeCommandAction Command="{Binding Start}" />
-							</i:EventTrigger>
-							<i:EventTrigger EventName="Unchecked">
-								<i:InvokeCommandAction Command="{Binding Pause}" />
-							</i:EventTrigger>
-						</i:Interaction.Triggers>
+					<controls:StopButton StopCommand="{Binding Stop}"
+					                     StopEvent="StopButton_StopEvent" />
 
-					</ToggleButton>
-
-					<controls:PlayPauseButton Margin="5" />
-
-					<controls:StopButton StopCommand="{Binding Stop}" />
 				</StackPanel>
 			</Viewbox>
 

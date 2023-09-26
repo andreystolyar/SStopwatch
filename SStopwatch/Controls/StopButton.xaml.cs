@@ -23,6 +23,8 @@ public partial class StopButton : UserControl
     */
     Timer _timer;
 
+    public event EventHandler StopEvent = delegate {};
+
     public StopButton()
     {
         InitializeComponent();
@@ -63,7 +65,11 @@ public partial class StopButton : UserControl
 
     void _timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-        Dispatcher.BeginInvoke(() => StopCommand.Execute(null));
+        Dispatcher.BeginInvoke(() => 
+        {
+            StopCommand.Execute(null);
+            StopEvent(this, EventArgs.Empty);
+        });
     }
 
     void ButtonDown(object sender, MouseButtonEventArgs e)

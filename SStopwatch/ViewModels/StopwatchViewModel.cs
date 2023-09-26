@@ -8,7 +8,7 @@ namespace SStopwatch.ViewModels;
 
 internal class StopwatchViewModel : INotifyPropertyChanged
 {
-    StopwatchModel model;
+    readonly StopwatchModel model;
 
     public ICommand Start { get; }
     public ICommand Pause { get; }
