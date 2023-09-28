@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace SStopwatch.Controls;
 
@@ -59,6 +60,51 @@ public partial class PlayPauseButton : UserControl
             typeof(PlayPauseButton),
             new PropertyMetadata(null));
 
+    #endregion
+
+    #region ButtonBrush
+    public Brush ButtonBrush
+    {
+        get { return (Brush)GetValue(ButtonBrushProperty); }
+        set { SetValue(ButtonBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty ButtonBrushProperty =
+        DependencyProperty.Register(
+            "ButtonBrush",
+            typeof(Brush),
+            typeof(PlayPauseButton),
+            new PropertyMetadata(new SolidColorBrush(Colors.Gray)));
+    #endregion
+
+    #region ButtonPressedBrush
+    public Brush ButtonPressedBrush
+    {
+        get { return (Brush)GetValue(ButtonPressedBrushProperty); }
+        set { SetValue(ButtonPressedBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty ButtonPressedBrushProperty =
+        DependencyProperty.Register(
+            "ButtonPressedBrush",
+            typeof(Brush),
+            typeof(PlayPauseButton),
+            new PropertyMetadata(new SolidColorBrush(Colors.LightGray)));
+    #endregion
+
+    #region ButtonTransparentBrush
+    public Brush ButtonTransparentBrush
+    {
+        get { return (Brush)GetValue(ButtonTransparentBrushProperty); }
+        set { SetValue(ButtonTransparentBrushProperty, value); }
+    }
+
+    public static readonly DependencyProperty ButtonTransparentBrushProperty =
+        DependencyProperty.Register(
+            "ButtonTransparentBrush",
+            typeof(Brush),
+            typeof(PlayPauseButton),
+            new PropertyMetadata(new SolidColorBrush(Colors.Transparent)));
     #endregion
 
     #endregion

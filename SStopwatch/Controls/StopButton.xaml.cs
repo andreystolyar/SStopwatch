@@ -224,7 +224,8 @@ public partial class StopButton : UserControl
             "PressingTime",
             typeof(double),
             typeof(StopButton),
-            new PropertyMetadata(1000d));
+            new PropertyMetadata(1000d, OnPressingTimeChanged));
+
     #endregion
 
     #endregion
@@ -261,6 +262,16 @@ public partial class StopButton : UserControl
         var circle = d as StopButton;
         circle.ProgressCircleRoot.StrokeThickness = (int)e.NewValue;
         circle.RenderArc();
+    }
+
+    static void OnPressingTimeChanged(DependencyObject d,
+        DependencyPropertyChangedEventArgs e)
+    {
+        var obj = d as StopButton;
+        obj.PressingTime = (double)e.NewValue;
+        obj.progressAnimation.Duration =
+            TimeSpan.FromMilliseconds(obj.PressingTime);
+        obj._timer.Interval = obj.PressingTime;
     }
 
     void RenderArc()

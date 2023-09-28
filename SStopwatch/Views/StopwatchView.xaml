@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:SStopwatch.Controls"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:local="clr-namespace:SStopwatch"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodels="clr-namespace:SStopwatch.ViewModels"
         Title="Stopwatch"
@@ -30,10 +28,6 @@
 		            Margin="20,10">
 
 			<DockPanel>
-				<!-- <Button x:Name="OptionsButton"
-						Content="Opt."
-						DockPanel.Dock="Right"/>-->
-
 				<!-- Testing sliders:
 				<Slider x:Name="slider"
 				        Width="100"
@@ -107,12 +101,6 @@
 
 				<StackPanel HorizontalAlignment="Center"
 				            Orientation="Horizontal">
-					<StackPanel.Background>
-						<LinearGradientBrush StartPoint="0.25, 0" EndPoint="1, 0">
-							<GradientStop Offset="0" Color="AliceBlue" />
-							<GradientStop Offset="1" Color="Bisque" />
-						</LinearGradientBrush>
-					</StackPanel.Background>
 
 					<controls:PlayPauseButton x:Name="PlayPause"
 					                          Margin="5"

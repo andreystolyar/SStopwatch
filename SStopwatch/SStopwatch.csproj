@@ -17,8 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Expression.Blend.Sdk.WPF" Version="1.0.1" />
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="System.Threading" Version="4.3.0" />
   </ItemGroup>
 

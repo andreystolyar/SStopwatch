@@ -7,9 +7,7 @@
 
 				<ResourceDictionary Source="Resourses/PinButton.xaml" />
 
-				<ResourceDictionary Source="Resourses/PlayPauseButton.xaml" />
-
-				<ResourceDictionary Source="Resourses/StopButton.xaml" />
+				<ResourceDictionary Source="Resourses/MainButtons.xaml" />
 
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
