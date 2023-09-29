@@ -44,7 +44,8 @@
 		</CombinedGeometry>
 	</UserControl.Resources>
 	<Border>
-		<Button Click="Button_Click">
+		<Button Click="Button_Click"
+		        Focusable="False">
 			<Button.Template>
 				<ControlTemplate TargetType="Button">
 					<Grid>

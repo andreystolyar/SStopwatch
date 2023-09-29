@@ -11,6 +11,8 @@
         MinWidth="250"
         MinHeight="260"
         d:DataContext="{d:DesignInstance Type=viewmodels:StopwatchViewModel}"
+        KeyDown="OnKeyDown"
+        KeyboardNavigation.TabNavigation="None"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
 
@@ -79,6 +81,7 @@
 				<ToggleButton x:Name="PinButton"
 				              Click="PinButton_Click"
 				              DockPanel.Dock="Right"
+				              Focusable="False"
 				              Style="{StaticResource PinButtonStyle}">
 					<Image Height="30"
 					       Source="/Assets/pin.png" />
@@ -102,12 +105,13 @@
 				<StackPanel HorizontalAlignment="Center"
 				            Orientation="Horizontal">
 
-					<controls:PlayPauseButton x:Name="PlayPause"
+					<controls:PlayPauseButton x:Name="PlayPauseBtn"
 					                          Margin="5"
 					                          PauseCommand="{Binding Pause}"
 					                          PlayCommand="{Binding Start}" />
 
-					<controls:StopButton StopCommand="{Binding Stop}"
+					<controls:StopButton x:Name="StopBtn"
+					                     StopCommand="{Binding Stop}"
 					                     StopEvent="StopButton_StopEvent" />
 
 				</StackPanel>

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -26,7 +27,7 @@ public partial class PlayPauseButton : UserControl
             "IsPlaying",
             typeof(bool),
             typeof(PlayPauseButton),
-            new PropertyMetadata(false));
+            new PropertyMetadata(false, OnIsPlayingChanged));
 
     #endregion
 
@@ -121,4 +122,19 @@ public partial class PlayPauseButton : UserControl
         IsPlaying = true;
         PlayCommand.Execute(null);
     }
+
+    static void OnIsPlayingChanged(DependencyObject d,
+        DependencyPropertyChangedEventArgs e)
+    {
+        var obj = (PlayPauseButton)d;
+
+        if (obj.IsPlaying)
+        {
+            obj.PlayCommand.Execute(null);
+            return;
+        }
+
+        obj.PauseCommand.Execute(null);
+    }
+
 }

@@ -1,5 +1,5 @@
-﻿using SStopwatch.Controls;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Input;
 
 namespace SStopwatch.Views;
 
@@ -17,7 +17,24 @@ public partial class StopwatchView : Window
 
     void StopButton_StopEvent(object sender, System.EventArgs e)
     {
-        if (PlayPause.IsPlaying)
-            PlayPause.IsPlaying = false;
+        if (PlayPauseBtn.IsPlaying)
+            PlayPauseBtn.IsPlaying = false;
     }
+
+    void OnKeyDown(object sender, KeyEventArgs e)
+    {
+        switch (e.Key)
+        {
+            case Key.Enter:
+            case Key.Space:
+                if (e.Key == Key.Enter || e.Key == Key.Space)
+                    PlayPauseBtn.IsPlaying = !PlayPauseBtn.IsPlaying;
+                break;
+            case Key.Escape:
+                StopBtn.StopCommand.Execute(null);
+                StopButton_StopEvent(null, null);
+                break;
+        }
+    }
+
 }
